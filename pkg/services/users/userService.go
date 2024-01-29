@@ -4,9 +4,11 @@ import (
 	"strconv"
 	"user-crud/internal/utils"
 	"user-crud/pkg/models"
+	"user-crud/pkg/repositories"
 )
 
 type User = models.User
+type User1 = models.User1
 
 var users = utils.UserData
 
@@ -23,10 +25,16 @@ func GetUserByIdService(id string) User {
 	return User{}
 }
 
-func CreateUserService(user User) User {
+func CreateUserService(user User1) User1 {
 
-	user.ID = len(users) + 1
-	users = append(users, user)
+	// user.ID = len(users) + 1
+
+	// users = append(users, user)
+	repo, err := repositories.UserRepository()
+	if err != nil {
+		return User1{}
+	}
+	repo.CreateUser(&user)
 	return user
 }
 

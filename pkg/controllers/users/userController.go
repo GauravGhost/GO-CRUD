@@ -9,6 +9,7 @@ import (
 )
 
 type User = models.User
+type User1 = models.User1
 
 // var users = utils.UserData
 
@@ -26,7 +27,7 @@ func GetUserById(c *gin.Context) {
 }
 
 func CreateUser(c *gin.Context) {
-	var user User
+	var user User1
 	if err := c.BindJSON(&user); err != nil{
 		c.JSON(http.StatusBadRequest, gin.H{"message":"Bad Body Request"})
 	}
